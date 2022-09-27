@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Player</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/media-queries.css">
+  <link rel="stylesheet" href="/css/css_with_js.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="main">
+    <!-- Part: 1 -->
+    <div class="marquee-text">
+      <h1 class="music-title">Please Add some Audio files</h1>
+    </div>
+
+    <!-- Part: 2 -->
+    <div class="music-player">
+      <!-- child: 1 -->
+      <div class="volume-controller">
+        <input type="range" class="volume-slider" min="0" max="10" value="5">
+        <img src="/assets/volume_high.svg" alt="" class="volume-icon volume-up">
+      </div>
+
+      <!-- child: 2 -->
+      <div class="music-cover-image audio-pause"></div>
+
+      <!-- child: 3 -->
+      <div class="media-player">
+        <!-- child:1 -->
+        <div class="music-timeline">
+          <progress min="0" max="100" value="0"></progress>
+          <!-- child: 1 -->
+          <div class="music-timeline-value">
+            <div class="current-time">00:00</div>
+            <div class="total-time">00:00</div>
+          </div>
+        </div>
+
+        <!-- child:2 -->
+        <div class="media-player-btns">
+          <img src="/assets/fast_rewind.svg" alt="rewind-audio" class="control-btns">
+          <img src="/assets/skip_previous.svg" alt="skip-to-previous" class="control-btns">
+          <img src="/assets/play-btn.svg" alt="play" class="control-btns">
+          <img src="/assets/skip_next.svg" alt="skip-to-next" class="control-btns">
+          <img src="/assets/fast_forward.svg" alt="forward-audio" class="control-btns">
+        </div>
+      </div>
+
+      <!-- child: 4 -->
+      <img src="/assets/music_library.svg" alt="music-library" class="music-library">
+    </div>
+
+    <!-- Part: 3 -->
+    <div class="upload-music">
+      <label for="upload-btn">Add Music <img src="/assets/music_icon.svg" alt="music-icon">
+      </label>
+      <input type="file" name="" id="upload-btn" accept=".mp3,.m4a,.wav" multiple>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/js/variables.js"></script>
+  <script type="module" src="/js/player.js"></script>
+  <script type="module" src="/js/functions.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+</html>

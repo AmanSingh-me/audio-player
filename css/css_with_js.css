@@ -1,0 +1,79 @@
+.music-cover-image {
+  animation: rotation 10s infinite linear;
+  box-shadow: 2px 2px 6px #202123, -2px 2px 6px #202123, 2px -2px 6px #202123,
+    -2px -2px 6px #202123;
+}
+.audio-play {
+  animation-play-state: running;
+}
+.audio-pause {
+  animation-play-state: paused;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.popup-layer {
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  animation: showSweetAlert 0.3s;
+}
+
+.list {
+  width: 70%;
+  min-height: fit-content;
+  max-height: 80%;
+  border: 1px solid #ffffff2b;
+  overflow: hidden;
+  overflow-y: auto;
+  position: relative;
+  background-color: #1e1f34;
+}
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.list li {
+  list-style: none;
+  border: 1px none #3281c2;
+  background-color: #191a2e;
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 10px;
+  padding:7px 12px;
+  cursor: pointer;
+  word-wrap: break-word;
+}
+
+.list li:hover{
+  border-style: solid;
+  background-color: #2f3255;
+}
+
+/* -------------------------- CSS for External library (Sweet Alert.js) ------------------------ */
+
+.swal-modal {
+  background-color: #5656567d;
+  backdrop-filter: blur(30px);
+}
+.swal-button.swal-button--confirm {
+  background-color: #6b6bf3 !important;
+  letter-spacing: 1px;
+}
+
+.swal-text,
+.swal-title,
+.swal-button.swal-button--confirm {
+  color: #ffffffba !important;
+}

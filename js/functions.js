@@ -6,7 +6,7 @@ let audioFiles_Not_Uploaded = 0;
 // It handles the files uploaded by user
 function uploadFiles(FILES) {
     let files = FILES;
-
+    let totalFiles = audioFiles_Uploaded.length
     for (const key in files) {
         if (files.hasOwnProperty(key)) {
             let fileName = files[key].name;
@@ -21,7 +21,9 @@ function uploadFiles(FILES) {
             }
         }
     }
-    musicTitle.textContent = audioFiles_Uploaded[0].name
+    if (totalFiles === 0) {
+        musicTitle.textContent = audioFiles_Uploaded[0].name
+    }
     showMusic_Playlist();
 }
 
@@ -29,10 +31,7 @@ function uploadFiles(FILES) {
 function playAudio(AUDIO_ID = 0) {
     if (have_Error()) return;
 
-    let functionCaller; // to identify from where function is invoked
-    AUDIO_ID === 0 ? functionCaller = 'self' : functionCaller = 'other';
-
-    if (functionCaller === 'other' || currently_PlayingAudio.audioId === -1) {
+    if (currently_PlayingAudio.audioId !== AUDIO_ID) { // If audioId is not changed then it's skipped
         audioElement.src = createAudio_Url(AUDIO_ID);
         currently_PlayingAudio.changeName_Id(AUDIO_ID);
         musicTitle.textContent = currently_PlayingAudio.audioName;

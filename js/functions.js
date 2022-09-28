@@ -28,11 +28,12 @@ function uploadFiles(FILES) {
 }
 
 // play audio
-function playAudio(AUDIO_ID = 0) {
+function playAudio(AUDIO_ID) {
     if (have_Error()) return;
 
     if (currently_PlayingAudio.audioId !== AUDIO_ID) { // If audioId is not changed then it's skipped
-        audioElement.src = createAudio_Url(AUDIO_ID);
+        if(currently_PlayingAudio.audioId === -1){ audioElement.src = createAudio_Url(0) } // default audio (first)
+        else{audioElement.src = createAudio_Url(AUDIO_ID)}
         currently_PlayingAudio.changeName_Id(AUDIO_ID);
         musicTitle.textContent = currently_PlayingAudio.audioName;
 

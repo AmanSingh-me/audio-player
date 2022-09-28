@@ -31,15 +31,21 @@ function uploadFiles(FILES) {
 function playAudio(AUDIO_ID) {
     if (have_Error()) return;
 
-    if (currently_PlayingAudio.audioId !== AUDIO_ID) { // If audioId is not changed then it's skipped
-        if(currently_PlayingAudio.audioId === -1){ audioElement.src = createAudio_Url(0) } // default audio (first)
-        else{audioElement.src = createAudio_Url(AUDIO_ID)}
-        currently_PlayingAudio.changeName_Id(AUDIO_ID);
+    function setAudio_Detail(ID) {
+        audioElement.src = createAudio_Url(ID);
+        currently_PlayingAudio.changeName_Id(ID);
         musicTitle.textContent = currently_PlayingAudio.audioName;
-
         audioElement.onloadeddata = () => { music_TotalTime.textContent = readable_AudioTime(audioElement.duration) }
     }
 
+    // If audioId is not changed then it's skipped
+    if (currently_PlayingAudio.audioId !== AUDIO_ID && AUDIO_ID !== undefined) {
+        // default audio (first)
+        currently_PlayingAudio.audioName === undefined ? setAudio_Detail(0) : setAudio_Detail(AUDIO_ID)
+    } else if (currently_PlayingAudio.audioId === -1){ // for very first time default audio
+        setAudio_Detail(0)
+    }
+    
     audioElement.play();
     currently_PlayingAudio.changePlayState("play", "pause");
     currently_PlayingAudio.update_MusicCover_Anim();
@@ -72,8 +78,7 @@ function playPrevious() {
 
     let previous_AudioId = currently_PlayingAudio.audioId - 1;
     if (previous_AudioId <= 0) {
-        currently_PlayingAudio.id = -1;
-        playAudio();
+        playAudio(0);
     } else {
         playAudio(previous_AudioId);
     }
@@ -86,7 +91,7 @@ function playNext() {
     let next_AudioId = currently_PlayingAudio.audioId + 1;
     if (next_AudioId > audioFiles_Uploaded.length - 1) { // played all files & restarting it from 0
         currently_PlayingAudio.id = -1;
-        playAudio();
+        playAudio(0);
     } else {
         playAudio(next_AudioId);
     }

@@ -40,8 +40,7 @@ function playAudio(AUDIO_ID) {
 
     // If audioId is not changed then it's skipped
     if (currently_PlayingAudio.audioId !== AUDIO_ID && AUDIO_ID !== undefined) {
-        // default audio (first)
-        currently_PlayingAudio.audioName === undefined ? setAudio_Detail(0) : setAudio_Detail(AUDIO_ID)
+        AUDIO_ID === undefined ? setAudio_Detail(0) : setAudio_Detail(AUDIO_ID)
     } else if (currently_PlayingAudio.audioId === -1){ // for very first time default audio
         setAudio_Detail(0)
     }
